@@ -1,12 +1,10 @@
-import React, { useState } from 'react'
+import React from 'react'
 import "components/InterviewerListItem.scss";
 import classNames from 'classnames';
 
 function InterviewerListItem(props) {
-  const [interviewer, setInterviewer] = useState("");
   const interviewerListItemClassNames = classNames("interviewers__item", {
     "interviewers__item--selected": props.selected,
-    "day-list__item--full": props.spots === 0,
   });
 
   return (
