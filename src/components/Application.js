@@ -4,6 +4,7 @@ import DayList from "./DayList";
 
 export default function Application(props) {
 const [day, setDay] = useState("Monday");
+  const [interviewer, setInterviewer] = useState("");
 
   const days = [
     {
