@@ -6,6 +6,7 @@ import axios from "axios";
 
 export default function Application(props) {
   const [day, setDay] = useState([]);
+  const [selectedDay, setSelectedDay] = useState('Monday')
   const [interviewer, setInterviewer] = useState("");
   useEffect(()=>{
     axios.get("/api/days").then(response =>{
@@ -75,7 +76,11 @@ export default function Application(props) {
         />
         <hr className="sidebar__separator sidebar--centered" />
         <nav className="sidebar__menu">
-          <DayList days={day} value={day} onChange={setDay} />
+          <DayList
+            days={day}
+            value={selectedDay}
+            onChange={setSelectedDay}
+          />
         </nav>
         <img
           className="sidebar__lhl sidebar--centered"
@@ -83,9 +88,7 @@ export default function Application(props) {
           alt="Lighthouse Labs"
         />
       </section>
-      <section className="schedule">
-        {appointmentList}
-      </section>
+      <section className="schedule">{appointmentList}</section>
     </main>
   );
 }
