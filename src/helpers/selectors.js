@@ -18,8 +18,7 @@ export function getAppointmentsForDay(state, day) {
     let output = appointments
     let id = appointments.interviewer
     output.interviewer = state.interviewers[id]
-    // console.log(output.interviewer = state.interviwers[id])
-    // output[appointments] = output.interviewers[id];
-    // console.log(output)
     return output
   };
+
+  
