@@ -22,7 +22,7 @@ function Show(props) {
           <img
             className="appointment__actions-button"
             src="images/trash.png"
-            onClick={props.onDelete}
+            onClick={()=>{props.onDelete(props.id)}}
             alt="Delete"
           />
         </section>
