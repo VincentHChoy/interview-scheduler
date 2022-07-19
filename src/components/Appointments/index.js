@@ -17,33 +17,36 @@ function Appointment(props) {
   const SAVING = "SAVING";
   const DELETING = "DELETING";
   const CONFIRM = "CONFIRM";
+  const EDIT = "EDIT"
   const { mode, transition, back } = useVisualMode(
     props.interview ? SHOW : EMPTY
   );
 
-  function save(name, interviewer) {
+  const save = (name, interviewer) => {
     const interview = {
       student: name,
       interviewer,
     };
     transition("SAVING");
-    props.bookInterview(props.id, interview)
-    .then(() => {
+    props.bookInterview(props.id, interview).then(() => {
       transition("SHOW");
     });
-  }
+  };
 
-  function onDelete() {
-    console.log('on delete')
+  const onDelete = () => {
+    console.log("on delete");
     transition("DELETING");
-    props.cancelInterview(props.id)
-    .then(() => {
+    props.cancelInterview(props.id).then(() => {
       transition("EMPTY");
     });
-  }
-  function confirm(){
+  };
+  const confirm = () => {
     transition("CONFIRM");
-  }
+  };
+
+  const edit = (student,interviewer) => {
+    transition("EDIT");
+  };
 
   const findInterviewerById = (interviewers, id) => {
     for (const interviewer of interviewers) {
@@ -66,6 +69,7 @@ function Appointment(props) {
             props.interview.interviewer
           )}
           onDelete={confirm}
+          onEdit={edit}
         />
       )}
       {mode === CREATE && (
@@ -77,14 +81,25 @@ function Appointment(props) {
           }}
         />
       )}
+      {mode === EDIT && (
+        <Form
+          interviewers={props.interviewers}
+          onSave={save}
+          onCancel={() => {
+            back();
+          }}
+          student ={props.interview.student}
+          interviewer = {props.interview.interviewer}
+        />
+      )}
 
       {mode === SAVING && <Status message={"Saving"} />}
       {mode === DELETING && <Status message={"Deleting"} />}
       {mode === CONFIRM && (
         <Confirm
-          message ={"are you sure you want to delete this?"}
-          onConfirm = {onDelete}
-          onCancel = {back}
+          message={"are you sure you want to delete this?"}
+          onConfirm={onDelete}
+          onCancel={back}
         />
       )}
     </article>
