@@ -37,14 +37,19 @@ function useApplicationData(props) {
     };
 
     return axios.put(`/api/appointments/${id}`, { interview }).then(() => {
+
+      let newState = { ...state, appointments };
+      let appointmentsForDay = getAppointmentsForDay(newState, state.day);
+
+      const newDays = [...state.days];
+      newDays[0].spots = spotsRemaining(appointmentsForDay);
+
       setState({
         ...state,
         appointments,
+        days: newDays
       });
     });
-    // .then(()=>{
-    //     spotsRemaining(getAppointmentsForDay(state, state.day))
-    // });
   };
 
   const cancelInterview = (id) => {
