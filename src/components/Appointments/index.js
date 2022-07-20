@@ -36,15 +36,17 @@ function Appointment(props) {
       .then(() => {
         transition("SHOW");
       })
-      .catch(() => transition("ERROR_SAVE",true));
+      .catch(() => {
+        console.log("hello")
+        transition("ERROR_SAVE",true)});
   };
-
   const onDelete = () => {
     console.log("on delete");
     transition("DELETING",true);
     props.cancelInterview(props.id).then(() => {
       transition("EMPTY");
-    }).catch(() => transition("ERROR_DELETE",true));;
+    })
+    .catch(() => transition("ERROR_DELETE",true));;
   };
   const confirm = () => {
     transition("CONFIRM");
