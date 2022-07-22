@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 
 function Error(props) {
   return (
@@ -9,7 +9,7 @@ function Error(props) {
       </section>
       <img
         onClick={() => {
-          props.onCancel()
+          props.onCancel();
         }}
         className="appointment__error-close"
         src="images/close.png"
@@ -19,4 +19,4 @@ function Error(props) {
   );
 }
 
-export default Error
+export default Error;

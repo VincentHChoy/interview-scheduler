@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 
 function Status(props) {
   return (
@@ -13,4 +13,4 @@ function Status(props) {
   );
 }
 
-export default Status
+export default Status;

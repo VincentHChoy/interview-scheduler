@@ -195,4 +195,3 @@ storiesOf("Appointment", module)
       onCancel={action("onCancel")}
     />
   ));
-

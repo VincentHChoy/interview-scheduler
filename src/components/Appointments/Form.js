@@ -1,23 +1,21 @@
-import React, { useState } from 'react'
-import Button from 'components/Button'
-import InterviewerList from 'components/InterviewerList'
+import React, { useState } from "react";
+import Button from "components/Button";
+import InterviewerList from "components/InterviewerList";
 
 function Form(props) {
   const [student, setStudent] = useState(props.student || "");
   const [interviewer, setInterviewer] = useState(props.interviewer || null);
 
-  const reset = () =>{
-    setInterviewer(null)
-    setStudent("")
+  const reset = () => {
+    setInterviewer(null);
+    setStudent("");
     props.onCancel();
-
-  }
+  };
 
   return (
     <main className="appointment__card appointment__card--create">
       <section className="appointment__card-left">
-        <form autoComplete="off"
-        onSubmit={event => event.preventDefault()}>
+        <form autoComplete="off" onSubmit={(event) => event.preventDefault()}>
           <input
             className="appointment__create-input text--semi-bold"
             name="name"
@@ -41,12 +39,15 @@ function Form(props) {
       </section>
       <section className="appointment__card-right">
         <section className="appointment__actions">
-          <Button danger onClick={()=>{
-            reset()
-            }}>
+          <Button
+            danger
+            onClick={() => {
+              reset();
+            }}
+          >
             Cancel
           </Button>
-          <Button confirm onClick={()=> props.onSave(student,interviewer)}>
+          <Button confirm onClick={() => props.onSave(student, interviewer)}>
             Save
           </Button>
         </section>
@@ -55,4 +56,4 @@ function Form(props) {
   );
 }
 
-export default Form
+export default Form;

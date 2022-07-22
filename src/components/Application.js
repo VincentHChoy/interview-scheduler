@@ -9,12 +9,8 @@ import {
 } from "helpers/selectors";
 
 export default function Application(props) {
-  const {
-    state,
-    setDay,
-    bookInterview,
-    cancelInterview
-  } = useApplicationData();
+  const { state, setDay, bookInterview, cancelInterview } =
+    useApplicationData();
 
   let dailyAppointments = [];
   let dailyInterviewers = [];
@@ -22,15 +18,13 @@ export default function Application(props) {
   dailyAppointments = getAppointmentsForDay(state, state.day);
   dailyInterviewers = getInterviewersForDay(state, state.day);
 
-
-
   const appointmentList = Object.values(dailyAppointments).map(
     (appointment) => {
       return (
         <Appointment
           key={appointment.id}
           id={appointment.id}
-          state ={state}
+          state={state}
           time={appointment.time}
           interview={appointment.interview}
           interviewers={dailyInterviewers}

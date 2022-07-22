@@ -19,8 +19,8 @@ function Appointment(props) {
   const DELETING = "DELETING";
   const CONFIRM = "CONFIRM";
   const EDIT = "EDIT";
-  const ERROR_SAVE = "ERROR_SAVE"
-  const ERROR_DELETE = "ERROR_DELETE"
+  const ERROR_SAVE = "ERROR_SAVE";
+  const ERROR_DELETE = "ERROR_DELETE";
   const { mode, transition, back } = useVisualMode(
     props.interview ? SHOW : EMPTY
   );
@@ -30,23 +30,26 @@ function Appointment(props) {
       student: name,
       interviewer,
     };
-    transition("SAVING",true);
+    transition("SAVING", true);
     props
       .bookInterview(props.id, interview)
       .then(() => {
         transition("SHOW");
       })
       .catch(() => {
-        console.log("hello")
-        transition("ERROR_SAVE",true)});
+        console.log("hello");
+        transition("ERROR_SAVE", true);
+      });
   };
   const onDelete = () => {
     console.log("on delete");
-    transition("DELETING",true);
-    props.cancelInterview(props.id).then(() => {
-      transition("EMPTY");
-    })
-    .catch(() => transition("ERROR_DELETE",true));;
+    transition("DELETING", true);
+    props
+      .cancelInterview(props.id)
+      .then(() => {
+        transition("EMPTY");
+      })
+      .catch(() => transition("ERROR_DELETE", true));
   };
   const confirm = () => {
     transition("CONFIRM");

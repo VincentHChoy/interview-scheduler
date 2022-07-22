@@ -37,7 +37,6 @@ function useApplicationData(props) {
     };
 
     return axios.put(`/api/appointments/${id}`, { interview }).then(() => {
-
       let newState = { ...state, appointments };
       let appointmentsForDay = getAppointmentsForDay(newState, state.day);
 
@@ -47,7 +46,7 @@ function useApplicationData(props) {
       setState({
         ...state,
         appointments,
-        days: newDays
+        days: newDays,
       });
     });
   };
@@ -63,24 +62,20 @@ function useApplicationData(props) {
       [id]: appointment,
     };
 
-    return axios
-      .delete(`/api/appointments/${id}`)
-      .then(() => {
+    return axios.delete(`/api/appointments/${id}`).then(() => {
+      let newState = { ...state, appointments };
+      let appointmentsForDay = getAppointmentsForDay(newState, state.day);
+      console.log("appointments for day", appointmentsForDay);
 
-        let newState = {...state,appointments};
-        let appointmentsForDay = getAppointmentsForDay(newState, state.day);
-        console.log("appointments for day", appointmentsForDay);
+      const newDays = [...state.days];
+      newDays[0].spots = spotsRemaining(appointmentsForDay);
 
-        const newDays = [...state.days];
-        newDays[0].spots = spotsRemaining(appointmentsForDay);
-
-        setState({
-          ...state,
-          appointments,
-          days: newDays
-        });
-
-      })
+      setState({
+        ...state,
+        appointments,
+        days: newDays,
+      });
+    });
   };
 
   useEffect(() => {

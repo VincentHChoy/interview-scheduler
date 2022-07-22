@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 
 function Header(props) {
   return (
@@ -9,4 +9,4 @@ function Header(props) {
   );
 }
 
-export default Header
+export default Header;

@@ -1,5 +1,4 @@
-import React from 'react'
-
+import React from "react";
 
 function Show(props) {
   return (
@@ -17,12 +16,14 @@ function Show(props) {
             className="appointment__actions-button"
             src="images/edit.png"
             alt="Edit"
-            onClick={() => props.onEdit(props.student,props.interviewer)}
+            onClick={() => props.onEdit(props.student, props.interviewer)}
           />
           <img
             className="appointment__actions-button"
             src="images/trash.png"
-            onClick={()=>{props.onDelete(props.id)}}
+            onClick={() => {
+              props.onDelete(props.id);
+            }}
             alt="Delete"
           />
         </section>
@@ -31,4 +32,4 @@ function Show(props) {
   );
 }
 
-export default Show
+export default Show;
