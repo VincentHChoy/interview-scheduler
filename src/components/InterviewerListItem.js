@@ -1,6 +1,6 @@
-import React from 'react'
+import React from "react";
 import "components/InterviewerListItem.scss";
-import classNames from 'classnames';
+import classNames from "classnames";
 
 function InterviewerListItem(props) {
   const interviewerListItemClassNames = classNames("interviewers__item", {
@@ -22,4 +22,4 @@ function InterviewerListItem(props) {
   );
 }
 
-export default InterviewerListItem
+export default InterviewerListItem;
