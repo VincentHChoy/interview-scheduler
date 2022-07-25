@@ -1,12 +1,12 @@
 import React from "react";
-import useApplicationData from "hooks/__tests__/useApplicationData";
-import "components/Application.scss";
+import useApplicationData from "../hooks/useApplicationData";
+import "./Application.scss";
 import DayList from "./DayList";
 import Appointment from "./Appointments";
 import {
   getAppointmentsForDay,
   getInterviewersForDay,
-} from "helpers/selectors";
+} from "../helpers/selectors";
 
 export default function Application(props) {
   const { state, setDay, bookInterview, cancelInterview } =

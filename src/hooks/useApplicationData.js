@@ -3,7 +3,6 @@ import "components/Application.scss";
 import axios from "axios";
 import {
   getAppointmentsForDay,
-  getInterviewersForDay,
 } from "helpers/selectors";
 
 function useApplicationData(props) {

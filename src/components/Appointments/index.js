@@ -6,7 +6,7 @@ import Empty from "./Empty";
 import Status from "./Status";
 import Confirm from "./Confirm";
 import Error from "./Error";
-import { useVisualMode } from "hooks/__tests__/useVisualMode";
+import { useVisualMode } from "../../hooks/useVisualMode";
 import Form from "./Form";
 
 function Appointment(props) {
@@ -68,7 +68,7 @@ function Appointment(props) {
   };
 
   return (
-    <article className="appointment">
+    <article className="appointment" data-testid="appointment">
       <Header time={props.time} />
       {mode === EMPTY && <Empty onAdd={() => transition("CREATE")} />}
       {mode === SHOW && (
