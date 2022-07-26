@@ -14,7 +14,7 @@ function DayList(props) {
       />
     );
   });
-  return <ul>{list}</ul>;
+  return <ul data-testid="day">{list}</ul>;
 }
 
 export default DayList;

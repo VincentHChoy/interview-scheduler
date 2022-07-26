@@ -1,9 +1,7 @@
 import { useEffect, useState } from "react";
 import "components/Application.scss";
 import axios from "axios";
-import {
-  getAppointmentsForDay,
-} from "helpers/selectors";
+import { getAppointmentsForDay } from "helpers/selectors";
 
 function useApplicationData(props) {
   const [state, setState] = useState({
@@ -23,6 +21,36 @@ function useApplicationData(props) {
     return spots;
   };
 
+  const getDayIndex = (stateDay) =>{
+    let dayIndex
+    switch (stateDay) {
+      case "Monday":
+        dayIndex = 0;
+        break;
+
+
+      case "Tuesday":
+        dayIndex = 1;
+        break;
+
+      case "Wednesday":
+        dayIndex = 2;
+        break;
+
+      case "Thursday":
+        dayIndex = 3;
+        break;
+
+      case "Friday":
+        dayIndex = 5;
+        break;
+
+      default:
+        break;
+    }
+    return dayIndex
+  }
+
   const setDay = (day) => setState({ ...state, day });
 
   const bookInterview = (id, interview) => {
@@ -40,7 +68,8 @@ function useApplicationData(props) {
       let appointmentsForDay = getAppointmentsForDay(newState, state.day);
 
       const newDays = [...state.days];
-      newDays[0].spots = spotsRemaining(appointmentsForDay);
+      const dayIndex = getDayIndex(state.day)
+      newDays[dayIndex].spots = spotsRemaining(appointmentsForDay);
 
       setState({
         ...state,
@@ -67,7 +96,8 @@ function useApplicationData(props) {
       console.log("appointments for day", appointmentsForDay);
 
       const newDays = [...state.days];
-      newDays[0].spots = spotsRemaining(appointmentsForDay);
+      const dayIndex = getDayIndex(state.day)
+      newDays[dayIndex].spots = spotsRemaining(appointmentsForDay);
 
       setState({
         ...state,

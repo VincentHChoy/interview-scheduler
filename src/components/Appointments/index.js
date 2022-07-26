@@ -108,7 +108,7 @@ function Appointment(props) {
       {mode === DELETING && <Status message={"Deleting"} />}
       {mode === CONFIRM && (
         <Confirm
-          message={"are you sure you want to delete this?"}
+          message={"Are you sure you would like to delete?"}
           onConfirm={onDelete}
           onCancel={back}
         />
