@@ -2,7 +2,6 @@ import React from "react";
 
 import axios from "axios";
 
-
 import {
   render,
   cleanup,
@@ -90,12 +89,11 @@ describe("Application", () => {
 
     // 8. Check that the DayListItem with the text "Monday" also has the text "2 spots remaining".
 
-    const day = getAllByTestId(container, "day").find(day =>
+    const day = getAllByTestId(container, "day").find((day) =>
       queryByText(day, "Monday")
     );
 
     expect(getByText(day, "2 spots remaining")).toBeInTheDocument();
-
   });
 
   it("loads data, edits an interview and keeps the spots remaining for Monday the same", async () => {
@@ -115,21 +113,17 @@ describe("Application", () => {
       target: { value: "Shawn Williams" },
     });
 
-
-
     fireEvent.click(getByText(appointment, "Save"));
 
     expect(getByText(appointment, "Saving")).toBeInTheDocument();
 
     await waitForElement(() => getByText(appointment, "Shawn Williams"));
 
-
-    const day = getAllByTestId(container, "day").find(day =>
+    const day = getAllByTestId(container, "day").find((day) =>
       queryByText(day, "Monday")
     );
 
     expect(getByText(day, "1 spot remaining")).toBeInTheDocument();
-
   });
 
   it("shows the save error when failing to save an appointment", async () => {
@@ -154,9 +148,7 @@ describe("Application", () => {
     expect(getByText(appointment, "Saving")).toBeInTheDocument();
 
     await waitForElement(() => getByText(appointment, "ERROR WHEN SAVING"));
-
   });
-
 
   it("shows the delete error when failing to delete an existing appointment", async () => {
     axios.delete.mockRejectedValueOnce();
@@ -183,10 +175,8 @@ describe("Application", () => {
     // 5. Click the "Confirm" button on the confirmation.
     expect(getByText(appointment, "Deleting")).toBeInTheDocument();
     // 7. Wait until the element with the "Add" button is displayed.
-    await waitForElement(() => 
-    expect(getByText(appointment, "ERROR WHEN DELETING"))
+    await waitForElement(() =>
+      expect(getByText(appointment, "ERROR WHEN DELETING"))
     );
-
   });
-
 });

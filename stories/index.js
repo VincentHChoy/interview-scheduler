@@ -141,12 +141,25 @@ storiesOf("Appointment", module)
     backgrounds: [{ name: "white", value: "#fff", default: true }],
   })
   .add("Appointment", () => <Appointment />)
-  .add("Appointment with Time", () => <Appointment time="12pm" />)
+  .add("Appointment with Time", () => 
+  <Appointment 
+  time="12pm"
+  interviewers={interviewers}
+   />)
 
   .add("Appointment Empty", () => (
     <Fragment>
-      <Appointment id={1} time="4pm" />
-      <Appointment time="5pm" />
+      <Appointment 
+      id={1} 
+      time="4pm"
+      interviewers={interviewers}
+       />
+
+      <Appointment 
+      time="5pm"
+      interviewers={interviewers} 
+        />
+
     </Fragment>
   ))
 
@@ -155,6 +168,7 @@ storiesOf("Appointment", module)
       <Appointment
         id={1}
         time="4pm"
+        interviewers={interviewers}
         interview={{ student: "Lydia Miller-Jones", interviewer }}
       />
       <Appointment time="5pm" />

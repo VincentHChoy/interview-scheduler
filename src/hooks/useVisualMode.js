@@ -15,7 +15,6 @@ export function useVisualMode(initial) {
   }
 
   function back() {
-    console.log("inside back function");
     const lastElement = history.slice(0, -1);
     setHistory(lastElement);
     if (history.length >= 1) setMode(lastElement[lastElement.length - 1]);

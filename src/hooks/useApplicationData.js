@@ -12,22 +12,19 @@ function useApplicationData(props) {
   });
 
   const spotsRemaining = (appointments) => {
-    console.log("checking appointments", appointments);
     let spots = 0;
     for (const appointment of appointments) {
       if (appointment.interview === null) spots++;
     }
-    console.log("spots remaining:", spots);
     return spots;
   };
 
-  const getDayIndex = (stateDay) =>{
-    let dayIndex
+  const getDayIndex = (stateDay) => {
+    let dayIndex;
     switch (stateDay) {
       case "Monday":
         dayIndex = 0;
         break;
-
 
       case "Tuesday":
         dayIndex = 1;
@@ -48,8 +45,8 @@ function useApplicationData(props) {
       default:
         break;
     }
-    return dayIndex
-  }
+    return dayIndex;
+  };
 
   const setDay = (day) => setState({ ...state, day });
 
@@ -68,7 +65,7 @@ function useApplicationData(props) {
       let appointmentsForDay = getAppointmentsForDay(newState, state.day);
 
       const newDays = [...state.days];
-      const dayIndex = getDayIndex(state.day)
+      const dayIndex = getDayIndex(state.day);
       newDays[dayIndex].spots = spotsRemaining(appointmentsForDay);
 
       setState({
@@ -93,10 +90,9 @@ function useApplicationData(props) {
     return axios.delete(`/api/appointments/${id}`).then(() => {
       let newState = { ...state, appointments };
       let appointmentsForDay = getAppointmentsForDay(newState, state.day);
-      console.log("appointments for day", appointmentsForDay);
 
       const newDays = [...state.days];
-      const dayIndex = getDayIndex(state.day)
+      const dayIndex = getDayIndex(state.day);
       newDays[dayIndex].spots = spotsRemaining(appointmentsForDay);
 
       setState({
