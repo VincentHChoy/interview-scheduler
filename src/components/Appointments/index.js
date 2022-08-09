@@ -10,8 +10,6 @@ import { useVisualMode } from "../../hooks/useVisualMode";
 import Form from "./Form";
 
 function Appointment(props) {
-  // console.log("appointment", props);
-  // console.log(props.interview);
   const EMPTY = "EMPTY";
   const SHOW = "SHOW";
   const CREATE = "CREATE";
@@ -37,12 +35,10 @@ function Appointment(props) {
         transition("SHOW");
       })
       .catch(() => {
-        console.log("hello");
         transition("ERROR_SAVE", true);
       });
   };
   const onDelete = () => {
-    console.log("on delete");
     transition("DELETING", true);
     props
       .cancelInterview(props.id)
@@ -108,7 +104,7 @@ function Appointment(props) {
       {mode === DELETING && <Status message={"Deleting"} />}
       {mode === CONFIRM && (
         <Confirm
-          message={"are you sure you want to delete this?"}
+          message={"Are you sure you would like to delete?"}
           onConfirm={onDelete}
           onCancel={back}
         />
